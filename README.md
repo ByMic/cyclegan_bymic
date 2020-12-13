@@ -6,6 +6,37 @@ module load cuda/10.0.130 cudnn/7.5
 bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan
 
 ```
+useful link for port forwarding for visdom https://github.com/Xivid/cil-text-classification-2018
+-> run visdom using screen to find out hostname e.g. lo-login-02
+-> use that in train_options.py
+
+Use screen to get two terminals:
+Type "screen" and then ctrl+a and then ctrl+c to spawn windows, use ctrl+a+a to change between terminals.
+In the first terminal run
+```
+python -m visdom.server
+```
+Then check the address that visdom gives you. 
+Use the following command on the second screen and adapt the command accordingly.
+```
+bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" no_proxy=lo-login-01  python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan --display_server http://lo-login-01
+```
+Then use port forwarding:
+```
+ssh -N -f -L :8099:lo-login-01:8097 mbayerle@login.leonhard.ethz.ch
+
+```
+This command will forward visdom to localhost:8099 of local machine.
+
+useful for  local pc:
+```
+ps -fe | grep flask
+ps -fe | grep python
+pkill -SIGTERM -f visdom.server
+```
+Note if you get Nvidia server error, reload CUDA and CuDNN.
+
+
 <img src='imgs/horse2zebra.gif' align="right" width=384>
 
 <br><br><br>
