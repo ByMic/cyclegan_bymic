@@ -4,8 +4,9 @@ module load eth_proxy
 module load python_gpu/3.7.1 hdf5/1.10.1
 module load cuda/10.0.130 cudnn/7.5 
 bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan
-
 ```
+# Leonhard + visdom on local PC 
+
 useful link for port forwarding for visdom https://github.com/Xivid/cil-text-classification-2018
 -> run visdom using screen to find out hostname e.g. lo-login-02
 -> use that in train_options.py
