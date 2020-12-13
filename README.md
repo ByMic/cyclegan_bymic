@@ -1,4 +1,9 @@
-
+# Leonhard
+```bash
+module load eth_proxy
+module load python_gpu/3.7.1 hdf5/1.10.1
+module load cuda/10.0.130 cudnn/7.5 
+```
 <img src='imgs/horse2zebra.gif' align="right" width=384>
 
 <br><br><br>
