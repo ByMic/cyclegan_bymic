@@ -1,4 +1,9 @@
 # Leonhard
+You need to downgrade torch to make it work with Cuda 10!
+```
+pip install torch==1.4.0 torchvision==0.5.0
+```
+load modules
 ```bash
 module load eth_proxy
 module load python_gpu/3.7.1 hdf5/1.10.1
