@@ -42,9 +42,9 @@ pkill -SIGTERM -f visdom.server
 ```
 
 # Transfer files
-
+```
 scp -r mbayerle@login.leonhard.ethz.ch:PATHTOFOLDER PATHTOLOCALFOLDER
-
+```
 
 <img src='imgs/horse2zebra.gif' align="right" width=384>
 
