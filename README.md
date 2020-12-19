@@ -27,6 +27,10 @@ Use the following command on the second screen and adapt the command accordingly
 ```
 bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" no_proxy=lo-login-01  python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan --display_server http://lo-login-01
 ```
+Or to write data to scratch and change identity loss regularizer
+```
+bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" no_proxy=lo-login-01  python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --display_server http://lo-login-01 --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1 --checkpoints_dir /cluster/scratch/mbayerle
+```
 Then use port forwarding:
 ```
 ssh -N -f -L :8099:lo-login-01:8097 mbayerle@login.leonhard.ethz.ch
