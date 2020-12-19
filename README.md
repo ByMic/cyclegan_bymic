@@ -40,7 +40,10 @@ ps -fe | grep flask
 ps -fe | grep python
 pkill -SIGTERM -f visdom.server
 ```
-Note if you get Nvidia server error, reload CUDA and CuDNN.
+
+# Transfer files
+
+scp -r mbayerle@login.leonhard.ethz.ch:PATHTOFOLDER PATHTOLOCALFOLDER
 
 
 <img src='imgs/horse2zebra.gif' align="right" width=384>
