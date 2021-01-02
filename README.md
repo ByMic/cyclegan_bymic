@@ -8,6 +8,7 @@ load modules
 module load eth_proxy
 module load python_gpu/3.7.1 hdf5/1.10.1
 module load cuda/10.0.130 cudnn/7.5 
+source /cluster/home/mbayerle/Envs/cyclegan/bin/activate
 bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan
 ```
 # Leonhard + visdom on local PC 
