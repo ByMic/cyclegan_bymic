@@ -39,7 +39,7 @@ ssh -N -f -L :8099:lo-login-01:8097 mbayerle@login.leonhard.ethz.ch
 ```
 This command will forward visdom to localhost:8099 of local machine.
 
-useful for  local pc:
+terminating the visdom server:
 ```
 ps -fe | grep flask
 ps -fe | grep python
