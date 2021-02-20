@@ -1,3 +1,6 @@
+# Credit
+This Repo is based on the official CycleGAN Repository: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+
 # Leonhard
 You need to downgrade torch to make it work with Cuda 10!
 ```
@@ -50,6 +53,9 @@ pkill -SIGTERM -f visdom.server
 ```
 scp -r mbayerle@login.leonhard.ethz.ch:PATHTOFOLDER PATHTOLOCALFOLDER
 ```
+
+# Original Readme
+Here starts the readme of the original repo: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 
 <img src='imgs/horse2zebra.gif' align="right" width=384>
 
