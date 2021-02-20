@@ -1,58 +1,18 @@
 # Credit
 This Repo is based on the official CycleGAN Repository: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 
-# Leonhard
-You need to downgrade torch to make it work with Cuda 10!
+# Running instructions Leonhard
+
 ```
+pip install requirements.txt
 pip install torch==1.4.0 torchvision==0.5.0
-```
-load modules
-```bash
 module load eth_proxy
 module load python_gpu/3.7.1 hdf5/1.10.1
-module load cuda/10.0.130 cudnn/7.5 
-source /cluster/home/mbayerle/Envs/cyclegan/bin/activate
-bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan
-```
-# Leonhard + visdom on local PC 
+module load cuda/10.0.130 cudnn/7.5
 
-useful link for port forwarding for visdom https://github.com/Xivid/cil-text-classification-2018
--> run visdom using screen to find out hostname e.g. lo-login-02
--> use that in train_options.py
-
-Use screen to get two terminals:
-Type "screen" and then ctrl+a and then ctrl+c to spawn windows, use ctrl+a+a to change between terminals.
-In the first terminal run
-```
-python -m visdom.server
-```
-Then check the address that visdom gives you. 
-Use the following command on the second screen and adapt the command accordingly.
-```
-bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" no_proxy=lo-login-01  python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan --display_server http://lo-login-01
-```
-Or to write data to scratch and change identity loss regularizer
-```
-bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" no_proxy=lo-login-01  python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --display_server http://lo-login-01 --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1 --checkpoints_dir /cluster/scratch/mbayerle
-```
-Then use port forwarding:
-```
-ssh -N -f -L :8099:lo-login-01:8097 mbayerle@login.leonhard.ethz.ch
-
-```
-This command will forward visdom to localhost:8099 of local machine.
-
-terminating the visdom server:
-```
-ps -fe | grep flask
-ps -fe | grep python
-pkill -SIGTERM -f visdom.server
+bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1 --checkpoints_dir /datasets/checkpoints
 ```
 
-# Transfer files
-```
-scp -r mbayerle@login.leonhard.ethz.ch:PATHTOFOLDER PATHTOLOCALFOLDER
-```
 
 # Original Readme
 Here starts the readme of the original repo: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
