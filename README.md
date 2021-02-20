@@ -12,7 +12,7 @@ module load cuda/10.0.130 cudnn/7.5
 ```
 Train the model:
 ```
-bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1 --checkpoints_dir ./datasets/checkpoints
+bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1
 ```
 After training use this command for evaluating the model on the test set:
 ```
