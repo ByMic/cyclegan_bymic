@@ -9,10 +9,15 @@ pip install torch==1.4.0 torchvision==0.5.0
 module load eth_proxy
 module load python_gpu/3.7.1 hdf5/1.10.1
 module load cuda/10.0.130 cudnn/7.5
-
+```
+Train the model:
+```
 bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1 --checkpoints_dir ./datasets/checkpoints
 ```
-
+After training use this command for evaluating the model on the test set:
+```
+bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python test.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan
+```
 
 # Original Readme
 Here starts the readme of the original repo: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
