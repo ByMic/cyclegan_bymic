@@ -1,22 +1,22 @@
 # Credit
 This Repo is based on the official CycleGAN Repository: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 
-# Running instructions Leonhard
+# Running instruction
 
 ```
 pip install -r requirements.txt
-pip install torch==1.4.0 torchvision==0.5.0
-module load eth_proxy
-module load python_gpu/3.7.1 hdf5/1.10.1
-module load cuda/10.0.130 cudnn/7.5
 ```
-Train the model:
+First step: Start a visdom server (defaults to localhost)
 ```
-bsub -n 4 -W 24:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1
+python -m visdom.server
 ```
-After training use this command for evaluating the model on the test set:
+To train a model, run the following command in a new terminal window:
 ```
-bsub -n 4 -W 4:00 -R "rusage[mem=8192, ngpus_excl_p=1]" python test.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan
+python train.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan --n_epochs 300 --n_epochs_decay 300 --lambda_identity 0.1
+```
+After training use this command for evaluating the model on the test set (also in a new terminal window):
+```
+python test.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan
 ```
 
 # Original Readme
