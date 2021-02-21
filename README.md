@@ -18,6 +18,7 @@ After training use this command for evaluating the model on the test set (also i
 ```
 python test.py --dataroot ./datasets/obama2trump --name obamatrump_Id01 --model cycle_gan
 ```
+The results will appear in the "results" folder.
 
 # Original Readme
 Here starts the readme of the original repo: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
