@@ -4,7 +4,7 @@ This Repo is based on the official CycleGAN Repository: https://github.com/junya
 # Running instructions Leonhard
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 pip install torch==1.4.0 torchvision==0.5.0
 module load eth_proxy
 module load python_gpu/3.7.1 hdf5/1.10.1
